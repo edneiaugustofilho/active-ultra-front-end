@@ -1,0 +1,26 @@
+
+.login-card {
+  max-width: 400px;
+  margin: 5rem auto;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.login-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+
+.login-logo {
+  width: 60px;
+  margin: 0 auto 1rem auto;
+  display: block;
+}
+
+.login-btn {
+  border-radius: 9999px; // pill shape
+  font-weight: 600;
+  text-transform: uppercase;
+}
