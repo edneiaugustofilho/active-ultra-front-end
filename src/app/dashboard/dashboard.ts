@@ -3,6 +3,8 @@ import {CommonModule} from '@angular/common';
 import {HttpClient} from '@angular/common/http';
 import {AuthService} from '../auth/auth';
 import {CustomNavigator} from '../services/custom-navigator';
+import {environment} from '../../environments/environment';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -12,6 +14,9 @@ import {CustomNavigator} from '../services/custom-navigator';
   styleUrls: ['./dashboard.css']
 })
 export class DashboardComponent implements OnInit {
+
+  private readonly baseUrl = `${environment.apiBaseUrl}`
+
   message: string = 'Loading...';
 
   constructor(private http: HttpClient,
@@ -21,7 +26,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.message = 'loading..';
 
-    this.http.get('http://localhost:8081/easy-erp-core/api/me', {responseType: 'text'})
+    this.http.get(`${this.baseUrl}/me`, {'responseType': 'text'})
       .subscribe({
         next: (res) => {
           this.message = res;

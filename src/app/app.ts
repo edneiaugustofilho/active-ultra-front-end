@@ -8,5 +8,5 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('web-acvtive-ultra');
+  protected readonly title = signal('web-active-ultra');
 }

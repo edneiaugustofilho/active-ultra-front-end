@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "web-acvtive-ultra": {
+    "web-active-ultra": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -41,7 +41,13 @@
                   "maximumError": "8kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.production.ts"
+                }
+              ]
             },
             "development": {
               "optimization": false,
@@ -55,10 +61,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "web-acvtive-ultra:build:production"
+              "buildTarget": "web-active-ultra:build:production"
             },
             "development": {
-              "buildTarget": "web-acvtive-ultra:build:development"
+              "buildTarget": "web-active-ultra:build:development"
             }
           },
           "defaultConfiguration": "development"
