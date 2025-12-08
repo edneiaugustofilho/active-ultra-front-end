@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "web-active-ultra": {
+    "active-ultra-front-end": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -61,10 +61,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "web-active-ultra:build:production"
+              "buildTarget": "active-ultra-front-end:build:production"
             },
             "development": {
-              "buildTarget": "web-active-ultra:build:development"
+              "buildTarget": "active-ultra-front-end:build:development"
             }
           },
           "defaultConfiguration": "development"
