@@ -10,18 +10,15 @@ export class CustomNavigator {
   constructor(private router: Router) {
   }
 
-  navigate(route: string) {
-    this.router.navigate([route]).then(
-      success => {
-        if (success) {
-          console.log('naviagion success');
-        } else {
-          console.log('naviagion success');
-        }
-      }
-    ).catch(error => {
-      console.log('Navigation erro', error);
-    });
+  navigate(route: string): void {
+    this.router
+      .navigate([route])
+      .then((success) => {
+        console.log(success ? 'Navigation success' : 'Navigation failed');
+      })
+      .catch((error) => {
+        console.error('Navigation error', error);
+      });
   }
 
 }

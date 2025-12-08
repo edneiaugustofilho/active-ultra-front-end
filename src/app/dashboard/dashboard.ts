@@ -21,20 +21,24 @@ export class DashboardComponent implements OnInit {
 
   constructor(private http: HttpClient,
               private authService: AuthService,
-              private customNavigator: CustomNavigator) {}
+              private customNavigator: CustomNavigator) {
+  }
 
   ngOnInit(): void {
-    this.message = 'loading..';
+    this.message = 'loading...';
 
-    this.http.get(`${this.baseUrl}/me`, {'responseType': 'text'})
+    this.http
+      .get<string>(`${this.baseUrl}/me`, {
+        responseType: 'text' as 'json',
+      })
       .subscribe({
         next: (res) => {
           this.message = res;
         },
         error: (e) => {
-          console.log(e);
-          this.message = 'Unauthorized or error fetching data'
-        }
+          console.error(e);
+          this.message = 'Unauthorized or error fetching data';
+        },
       });
   }
 

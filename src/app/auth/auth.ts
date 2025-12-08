@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
+import {environment} from '../../environments/environment';
 
 interface AuthRequest {
   email: string;
@@ -15,7 +16,7 @@ interface AuthResponse {
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:8091/user-jwt/api/auth/login';
+  private loginUrl = `${environment.authBaseUrl}/auth/login`;
   private tokenKey = 'jwt_token';
 
   constructor(private http: HttpClient) {}
@@ -23,9 +24,9 @@ export class AuthService {
   login(username: string, password: string): Observable<AuthResponse> {
     const request: AuthRequest = { email: username, password };
 
-    return this.http.post<AuthResponse>(this.apiUrl, request).pipe(
+    return this.http.post<AuthResponse>(this.loginUrl, request).pipe(
       tap((response) => {
-        if (response && response.token) {
+        if (response?.token) {
           localStorage.setItem(this.tokenKey, response.token);
         }
       })
