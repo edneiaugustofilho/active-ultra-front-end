@@ -14,7 +14,7 @@ export class CustomNavigator {
     this.router
       .navigate([route])
       .then((success) => {
-        console.log(success ? 'Navigation success' : 'Navigation failed');
+        // do nothing
       })
       .catch((error) => {
         console.error('Navigation error', error);

@@ -1,0 +1,60 @@
+<script src="../auth/auth.ts"></script>
+<mat-sidenav-container class="min-h-screen">
+  <!-- LEFT MENU -->
+  <mat-sidenav
+    #sidenav
+    class="w-64 dark-gray"
+    mode="side"
+    [opened]="sidenavOpen()">
+    <div class="flex items-center justify-between px-4 py-4 border-b">
+      <span class="font-semibold"><button mat-button (click)="goToHome()">Active Ultra</button></span>
+      <button mat-icon-button (click)="toggleSidenav()">
+        <mat-icon>chevron_left</mat-icon>
+      </button>
+    </div>
+
+    <mat-nav-list>
+      <a mat-list-item [routerLink]="['/dashboard']">
+        <mat-icon matListItemIcon>dashboard</mat-icon>
+        <span matListItemTitle>Dashboard</span>
+      </a>
+      <a mat-list-item [routerLink]="['/assets']">
+        <mat-icon matListItemIcon>inventory_2</mat-icon>
+        <span matListItemTitle>Assets</span>
+      </a>
+      <a mat-list-item (click)="logout()">
+        <mat-icon matListItemIcon>logout</mat-icon>
+        <span matListItemTitle>Logout</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <!-- MAIN CONTENT -->
+  <mat-sidenav-content class="flex flex-col min-h-screen darker-gray">
+    <!-- TOP BAR -->
+    <mat-toolbar color="primary" class="justify-between">
+      <div class="flex items-center gap-2">
+        <button mat-icon-button (click)="toggleSidenav()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span>Home</span>
+      </div>
+
+      <!-- right side of toolbar (user, etc) -->
+      <div class="flex items-center gap-4">
+        <!-- in future you can show user name from /me here -->
+        <!-- <span>{{ userName }}</span> -->
+        <button mat-button (click)="logout()">
+          <mat-icon class="mr-1">logout</mat-icon>
+          Logout
+        </button>
+      </div>
+    </mat-toolbar>
+
+    <!-- PAGE CONTENT (ROUTER OUTLET) -->
+    <main class="p-4 flex-1">
+      <!-- Here we render the "inner" pages, e.g. dashboard -->
+      <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>

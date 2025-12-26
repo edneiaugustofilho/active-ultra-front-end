@@ -45,7 +45,7 @@ export class LoginComponent {
     this.authService.login(email, password).subscribe({
       next: () => {
         this.loading = false;
-        this.customNavigator.navigate('/dashboard');
+        this.customNavigator.navigate('/');
       },
       error: (err) => {
         this.loading = false;

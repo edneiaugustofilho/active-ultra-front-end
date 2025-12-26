@@ -28,7 +28,7 @@ export class DashboardComponent implements OnInit {
     this.message = 'loading...';
 
     this.http
-      .get<string>(`${this.baseUrl}/me`, {
+      .get<string>(`${this.baseUrl}/public/me`, {
         responseType: 'text' as 'json',
       })
       .subscribe({

@@ -1,0 +1,58 @@
+<mat-card class="login-card">
+  <img ngSrc="assets/active-ultra-logo.png" alt="Active Ultra Logo" class="login-logo" height="256" width="256"/>
+
+  <h2 class="login-title">Select Tenant</h2>
+
+  @if (loading) {
+    <p>Loading tenants...</p>
+  } @else {
+    @if (loadErrorMessage) {
+      <div class="error-text">{{ loadErrorMessage }}</div>
+    }
+
+    @if (!loadErrorMessage && tenants.length === 0) {
+      <p>No tenants found for this user.</p>
+    } @else if (!loadErrorMessage && tenants.length > 0) {
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <!-- Tenant select -->
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Tenant</mat-label>
+
+          <mat-select formControlName="tenantId" placeholder="Select your tenant">
+            @for (tenant of tenants; track tenant.id) {
+              <mat-option [value]="tenant.id">
+                {{ tenant.name }}
+              </mat-option>
+            }
+          </mat-select>
+
+          @if (form.get('tenantId')?.hasError('required') && form.get('tenantId')?.touched) {
+            <mat-error>Tenant is required</mat-error>
+          }
+        </mat-form-field>
+
+        <!-- Submit error -->
+        @if (submitErrorMessage) {
+          <div class="error-text">{{ submitErrorMessage }}</div>
+        }
+
+        <!-- Submit button -->
+        <button
+          mat-raised-button
+          color="primary"
+          class="full-width login-btn"
+          [disabled]="form.invalid || submitting" >
+          {{ submitting ? 'Continuing...' : 'Continue' }}
+        </button>
+        <button
+          (click)="logout()"
+          mat-raised-button
+          color="tertiary"
+          class="full-width login-btn"
+          [disabled]="form.invalid || submitting" >
+          {{ submitting ? 'Leaving...' : 'Leave' }}
+        </button>
+      </form>
+    }
+  }
+</mat-card>

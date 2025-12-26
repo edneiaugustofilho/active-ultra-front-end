@@ -1,0 +1,328 @@
+<!-- asset-form.html -->
+
+<form [formGroup]="form" (ngSubmit)="save()">
+
+  <div class="surface-card content">
+
+    <!-- Header -->
+    <div class="header">
+      <div class="flex items-center justify-between">
+        <div>
+          <h2 class="text-xl font-semibold m-0">
+            {{ isEditMode ? 'Asset Details' : 'New Asset' }}
+          </h2>
+
+          @if (isEditMode) {
+            <div class="opacity-70 text-sm mt-1">
+              ID: {{ form.controls.id.value }} • Created: {{ form.controls.createdAt.value }} •
+              Updated: {{ form.controls.updatedAt.value }}
+            </div>
+          }
+        </div>
+
+        <div class="flex gap-2">
+          <button mat-button type="button" routerLink="/assets">Back</button>
+          <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-body">
+      <mat-tab-group>
+
+        <!-- GENERAL -->
+        <mat-tab label="General">
+          <div class="form-grid">
+
+            <mat-form-field appearance="fill">
+              <mat-label>Name</mat-label>
+              <input matInput formControlName="name" placeholder="e.g. Volkswagen UP 1.0">
+              @if (form.controls.name.touched && form.controls.name.invalid) {
+                <mat-error>Name is required</mat-error>
+              }
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Code</mat-label>
+              <input matInput formControlName="code" placeholder="e.g. CAR-0001">
+              @if (form.controls.code.touched && form.controls.code.invalid) {
+                <mat-error>Code is required</mat-error>
+              }
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Category</mat-label>
+              <mat-select formControlName="category">
+                <mat-option value="UNKNOWN">UNKNOWN</mat-option>
+                <mat-option value="VEHICLE">VEHICLE</mat-option>
+                <mat-option value="HEAVY_EQUIPMENT">HEAVY_EQUIPMENT</mat-option>
+                <mat-option value="TRAILER">TRAILER</mat-option>
+                <mat-option value="FORKLIFT">FORKLIFT</mat-option>
+                <mat-option value="MACHINE">MACHINE</mat-option>
+                <mat-option value="IT_EQUIPMENT">IT_EQUIPMENT</mat-option>
+                <mat-option value="HVAC">HVAC</mat-option>
+                <mat-option value="BUILDING">BUILDING</mat-option>
+                <mat-option value="TOOL">TOOL</mat-option>
+                <mat-option value="SAFETY_EQUIPMENT">SAFETY_EQUIPMENT</mat-option>
+                <mat-option value="FURNITURE">FURNITURE</mat-option>
+                <mat-option value="OTHER">OTHER</mat-option>
+              </mat-select>
+              @if (form.controls.category.touched && form.controls.category.invalid) {
+                <mat-error>Category is required</mat-error>
+              }
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Status</mat-label>
+              <mat-select formControlName="status">
+                <mat-option value="ACTIVE">ACTIVE</mat-option>
+                <mat-option value="INACTIVE">INACTIVE</mat-option>
+                <mat-option value="UNDER_MAINTENANCE">UNDER_MAINTENANCE</mat-option>
+                <mat-option value="SOLD">SOLD</mat-option>
+                <mat-option value="RENTED">RENTED</mat-option>
+                <mat-option value="WASTED">WASTED</mat-option>
+              </mat-select>
+              @if (form.controls.status.touched && form.controls.status.invalid) {
+                <mat-error>Status is required</mat-error>
+              }
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Acquisition Value</mat-label>
+              <input matInput type="number" formControlName="acquisitionValue" placeholder="e.g. 45000">
+              @if (form.controls.acquisitionValue.touched && form.controls.acquisitionValue.invalid) {
+                <mat-error>Acquisition value is required</mat-error>
+              }
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Acquisition Date</mat-label>
+              <input matInput formControlName="acquisitionDate"
+                     mask="d0/M0/0000" placeholder="e.g. 01/01/2020">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Expected Lifetime (months)</mat-label>
+              <input matInput type="number" formControlName="expectedLifetimeMonths" placeholder="e.g. 60">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Location</mat-label>
+              <input matInput formControlName="location" placeholder="e.g. Garage / Branch A">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Serial Number</mat-label>
+              <input matInput formControlName="serialNumber">
+            </mat-form-field>
+
+          </div>
+        </mat-tab>
+
+        <!-- DETAILS -->
+        <mat-tab label="Details">
+          <div class="form-grid">
+
+            <mat-form-field appearance="fill">
+              <mat-label>Brand</mat-label>
+              <input matInput formControlName="brand" placeholder="e.g. Volkswagen">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Model</mat-label>
+              <input matInput formControlName="model" placeholder="e.g. UP">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Model Year</mat-label>
+              <input matInput type="number" formControlName="modelYear" placeholder="e.g. 2019">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Manufacture Year</mat-label>
+              <input matInput type="number" formControlName="manufactureYear" placeholder="e.g. 2018">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Fleet Number</mat-label>
+              <input matInput formControlName="fleetNumber">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Color</mat-label>
+              <input matInput formControlName="color">
+            </mat-form-field>
+
+          </div>
+        </mat-tab>
+
+        <!-- VEHICLE -->
+        <mat-tab label="Vehicle">
+          <div class="form-grid">
+
+            <mat-form-field appearance="fill">
+              <mat-label>Vehicle Type</mat-label>
+              <mat-select formControlName="vehicleType">
+                <mat-option [value]="null">—</mat-option>
+                <mat-option value="CAR">CAR</mat-option>
+                <mat-option value="PICKUP">PICKUP</mat-option>
+                <mat-option value="TRUCK">TRUCK</mat-option>
+                <mat-option value="VAN">VAN</mat-option>
+                <mat-option value="BUS">BUS</mat-option>
+                <mat-option value="MOTORCYCLE">MOTORCYCLE</mat-option>
+                <mat-option value="TRAILER">TRAILER</mat-option>
+                <mat-option value="OTHER">OTHER</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Fuel Type</mat-label>
+              <mat-select formControlName="fuelType">
+                <mat-option [value]="null">—</mat-option>
+                <mat-option value="GASOLINE">GASOLINE</mat-option>
+                <mat-option value="ETHANOL">ETHANOL</mat-option>
+                <mat-option value="FLEX">FLEX</mat-option>
+                <mat-option value="DIESEL">DIESEL</mat-option>
+                <mat-option value="CNG">CNG</mat-option>
+                <mat-option value="ELECTRIC">ELECTRIC</mat-option>
+                <mat-option value="HYBRID">HYBRID</mat-option>
+                <mat-option value="OTHER">OTHER</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Transmission</mat-label>
+              <mat-select formControlName="transmissionType">
+                <mat-option [value]="null">—</mat-option>
+                <mat-option value="MANUAL">MANUAL</mat-option>
+                <mat-option value="AUTOMATIC">AUTOMATIC</mat-option>
+                <mat-option value="CVT">CVT</mat-option>
+                <mat-option value="AUTOMATED">AUTOMATED</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Ownership</mat-label>
+              <mat-select formControlName="ownershipType">
+                <mat-option [value]="null">—</mat-option>
+                <mat-option value="OWNED">OWNED</mat-option>
+                <mat-option value="LEASED">LEASED</mat-option>
+                <mat-option value="RENTED">RENTED</mat-option>
+                <mat-option value="THIRD_PARTY">THIRD_PARTY</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>License Plate</mat-label>
+              <input matInput formControlName="licensePlate">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Chassis Number</mat-label>
+              <input matInput formControlName="chassisNumber">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Renavam</mat-label>
+              <input matInput formControlName="renavam">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Odometer (km)</mat-label>
+              <input matInput type="number" formControlName="odometerKm">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Seating Capacity</mat-label>
+              <input matInput type="number" formControlName="seatingCapacity">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Axle Count</mat-label>
+              <input matInput type="number" formControlName="axleCount">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Max Load (kg)</mat-label>
+              <input matInput type="number" formControlName="maxLoadKg">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Engine Displacement (cc)</mat-label>
+              <input matInput type="number" formControlName="engineDisplacementCc">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Tank Capacity (L)</mat-label>
+              <input matInput type="number" formControlName="tankCapacityLiters">
+            </mat-form-field>
+
+          </div>
+        </mat-tab>
+
+        <!-- INSURANCE & DOCS -->
+        <mat-tab label="Insurance / Docs">
+          <div class="form-grid">
+
+            <mat-form-field appearance="fill">
+              <mat-label>Insurance Company</mat-label>
+              <input matInput formControlName="insuranceCompany">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Policy Number</mat-label>
+              <input matInput formControlName="insurancePolicyNumber">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Insurance Expiry Date</mat-label>
+              <input matInput [matDatepicker]="insPicker" formControlName="insuranceExpiryDate">
+              <mat-datepicker-toggle matSuffix [for]="insPicker"></mat-datepicker-toggle>
+              <mat-datepicker #insPicker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Registration Expiry Date</mat-label>
+              <input matInput [matDatepicker]="regPicker" formControlName="registrationExpiryDate">
+              <mat-datepicker-toggle matSuffix [for]="regPicker"></mat-datepicker-toggle>
+              <mat-datepicker #regPicker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Current Driver</mat-label>
+              <input matInput formControlName="currentDriver">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>GPS Tracker ID</mat-label>
+              <input matInput formControlName="gpsTrackerId">
+            </mat-form-field>
+
+          </div>
+        </mat-tab>
+
+        <!-- NOTES -->
+        <mat-tab label="Notes">
+          <div class="form-grid">
+            <mat-form-field appearance="fill" class="col-span-full">
+              <mat-label>Notes</mat-label>
+              <textarea matInput formControlName="notes" rows="6" placeholder="Any extra information..."></textarea>
+            </mat-form-field>
+          </div>
+        </mat-tab>
+
+      </mat-tab-group>
+    </div>
+
+    <!-- Bottom actions -->
+    <div class="actions">
+      <button mat-button type="button" routerLink="/assets">Cancel</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+        Save
+      </button>
+    </div>
+
+  </div>
+</form>

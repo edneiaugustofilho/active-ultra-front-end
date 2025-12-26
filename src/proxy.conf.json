@@ -1,0 +1,14 @@
+{
+  "/core/api/**": {
+    "target": "http://localhost:8081",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  },
+  "/user-jwt/api/**": {
+    "target": "http://localhost:8091",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

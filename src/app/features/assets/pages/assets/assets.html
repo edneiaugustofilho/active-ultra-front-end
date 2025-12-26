@@ -1,0 +1,76 @@
+<div class="flex items-center justify-between mb-4">
+  <h1 class="text-xl font-semibold">Assets</h1>
+
+  <button mat-raised-button routerLink="/assets/new">
+    <mat-icon class="mr-1">add</mat-icon>
+    New Asset
+  </button>
+</div>
+
+<mat-form-field class="w-full mb-4">
+  <mat-label>Pesquisa</mat-label>
+  <input matInput
+         placeholder="Nome, código, categoria ..."
+         [value]="searchRequest.query"
+         (input)="onQueryChange($any($event.target).value)"/>
+  <mat-icon matPrefix>search</mat-icon>
+
+  @if (searchRequest &&
+  searchRequest.query &&
+  searchRequest.query!.length > 0) {
+    <button
+      mat-icon-button
+      matSuffix
+      type="button"
+      aria-label="Limpar pesquisa"
+      (click)="onQueryChange('')">
+      <mat-icon>close</mat-icon>
+    </button>
+  }
+</mat-form-field>
+
+@if (loading) {
+  <div>Loading...</div>
+} @else if (error) {
+  <div class="text-red-400">{{ error }}</div>
+} @else if (!page || (page.content?.length ?? 0) === 0) {
+  <div>No assets found.</div>
+} @else {
+  <div class="grid gap-3">
+    @for (a of page.content; track a.id) {
+      <mat-card
+        class="cursor-pointer hover:shadow-md transition"
+        [routerLink]="['/assets', a.id]">
+        <div class="flex items-start justify-between">
+          <div>
+            <div class="font-semibold">{{ a.name }}</div>
+            <div class="opacity-70 text-sm">
+              {{ a.code }} • {{ a.category }} • {{ a.status }}
+            </div>
+          </div>
+
+          <div class="text-right">
+            <div class="font-semibold">
+              {{ a.acquisitionValue | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}
+            </div>
+            <div class="opacity-70 text-sm">
+              {{ a.acquisitionDate }}
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    }
+  </div>
+
+  <div class="mt-4">
+    @if (page) {
+      <mat-paginator
+        [length]="page.totalElements ?? 0"
+        [pageIndex]="page.number ?? 0"
+        [pageSize]="page.size ?? 0"
+        [pageSizeOptions]="[5, 10, 20, 50]"
+        (page)="onPageChange($event)">
+      </mat-paginator>
+    }
+  </div>
+}

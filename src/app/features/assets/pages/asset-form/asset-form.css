@@ -1,0 +1,98 @@
+/* asset-form.css */
+
+/* Page container feel */
+:host {
+  display: block;
+}
+
+/* Sticky header area (works if your header wrapper is the first block) */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--mat-sys-surface, #fff);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 16px 16px 12px;
+}
+
+/* Constrain content width for readability */
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Tabs body spacing */
+.tab-body {
+  padding: 16px 16px 0;
+}
+
+/* Responsive form grid */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 14px;
+}
+
+/* Default fields take 4 columns (3 per row on wide screens) */
+.form-grid mat-form-field {
+  grid-column: span 4;
+}
+
+/* Make important fields wider if you apply class in HTML later */
+.form-grid .span-6 { grid-column: span 6; }
+.form-grid .span-8 { grid-column: span 8; }
+.form-grid .span-12,
+.form-grid .col-span-full { grid-column: 1 / -1; }
+
+/* Responsive breakpoints */
+@media (max-width: 1100px) {
+  .form-grid mat-form-field { grid-column: span 6; } /* 2 per row */
+}
+
+@media (max-width: 700px) {
+  .header {
+    padding: 12px 12px 10px;
+  }
+
+  .form-grid {
+    gap: 12px;
+  }
+
+  .form-grid mat-form-field {
+    grid-column: 1 / -1; /* 1 per row */
+  }
+}
+
+/* Bottom actions bar */
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 16px;
+  margin-top: 10px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* Optional: make buttons feel consistent */
+.actions button[mat-raised-button] {
+  min-width: 120px;
+}
+
+/* Notes textarea */
+textarea[matInput] {
+  resize: vertical;
+  min-height: 140px;
+}
+
+/* Slightly reduce visual noise of mat-tab-group body */
+mat-tab-group {
+  margin-top: 6px;
+}
+
+/* If your page background is dark like your dashboard, give the form a card feel */
+.surface-card {
+  background: var(--mat-sys-surface, #fff);
+  border-radius: 14px;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
