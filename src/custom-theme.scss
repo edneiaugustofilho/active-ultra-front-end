@@ -128,7 +128,6 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  /* if darker-gray was a tailwind color, define it explicitly: */
   background: var(--mat-sys-surface);
 }
 
