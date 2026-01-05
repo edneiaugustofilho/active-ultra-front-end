@@ -4,7 +4,7 @@ import {
   AssetStatus,
   AssetTransmissionType,
   AssetVehicleType
-} from '../../../../core/api/dto/asset.dto';
+} from '../../../../shared/all-types';
 
 export type AssetFormValue = {
 
@@ -49,8 +49,8 @@ export type AssetFormValue = {
 
   insuranceCompany: string | null;
   insurancePolicyNumber: string | null;
-  insuranceExpiryDate: Date | null;
-  registrationExpiryDate: Date | null;
+  insuranceExpiryDate: string | null;
+  registrationExpiryDate: string | null;
   currentDriver: string | null;
   gpsTrackerId: string | null;
   notes: string | null;

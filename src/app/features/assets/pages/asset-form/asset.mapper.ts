@@ -1,4 +1,3 @@
-// asset.mapper.ts
 import { AssetResponse, AssetUpsertRequest } from '../../../../core/api/dto/asset.dto';
 import { AssetFormValue } from './asset-form.types';
 
@@ -9,8 +8,8 @@ export class AssetMapper {
     return {
       // meta
       id: a.id ?? null,
-      createdAt: a.createdAt ?? null,
-      updatedAt: a.updatedAt ?? null,
+      createdAt: a.createdAt ? this.fromIsoDateTime(a.createdAt) : null,
+      updatedAt: a.updatedAt ? this.fromIsoDateTime(a.updatedAt) : null,
 
       // required on API
       name: a.name ?? '',
@@ -51,8 +50,10 @@ export class AssetMapper {
 
       insuranceCompany: a.insuranceCompany ?? null,
       insurancePolicyNumber: a.insurancePolicyNumber ?? null,
-      insuranceExpiryDate: a.insuranceExpiryDate ? this.fromIsoDate(a.insuranceExpiryDate) : null,
-      registrationExpiryDate: a.registrationExpiryDate ? this.fromIsoDate(a.registrationExpiryDate) : null,
+
+      insuranceExpiryDate: a.insuranceExpiryDate ? this.fromIsoDateToMaskedDate(a.insuranceExpiryDate) : null,
+      registrationExpiryDate: a.registrationExpiryDate ? this.fromIsoDateToMaskedDate(a.registrationExpiryDate) : null,
+
       currentDriver: a.currentDriver ?? null,
       gpsTrackerId: a.gpsTrackerId ?? null,
       notes: a.notes ?? null,
@@ -61,8 +62,6 @@ export class AssetMapper {
 
   /** Form -> API (create/update) */
   static toUpsertRequest(v: AssetFormValue): AssetUpsertRequest {
-    console.log(v.acquisitionDate);
-    console.log(v.acquisitionDate ? this.fromMaskedDateToIsoDate(v.acquisitionDate) : null);
     return {
       name: this.requiredTrim(v.name),
       acquisitionValue: this.requiredNumber(v.acquisitionValue),
@@ -102,8 +101,8 @@ export class AssetMapper {
 
       insuranceCompany: this.optString(v.insuranceCompany),
       insurancePolicyNumber: this.optString(v.insurancePolicyNumber),
-      insuranceExpiryDate: v.insuranceExpiryDate ? this.toIsoDate(v.insuranceExpiryDate) : undefined,
-      registrationExpiryDate: v.registrationExpiryDate ? this.toIsoDate(v.registrationExpiryDate) : undefined,
+      insuranceExpiryDate: v.insuranceExpiryDate ? this.fromMaskedDateToIsoDate(v.insuranceExpiryDate) : undefined,
+      registrationExpiryDate: v.registrationExpiryDate ? this.fromMaskedDateToIsoDate(v.registrationExpiryDate) : undefined,
       currentDriver: this.optString(v.currentDriver),
       gpsTrackerId: this.optString(v.gpsTrackerId),
       notes: this.optString(v.notes),
@@ -126,9 +125,16 @@ export class AssetMapper {
     return new Date(y, (m ?? 1) - 1, d ?? 1);
   }
 
+  private static fromIsoDateTime(dt: string): string {
+    const datePart = dt.length >= 10 ? dt.substring(0, 10) : dt;
+    const timePart = dt.length >= 19 ? dt.substring(11, 19) : dt;
+    const [y, m, d] = datePart.split('-').map(String);
+    const [h, i, s] = timePart.split(':').map(String);
+    return `${d}/${m}/${y} ${h}:${i}`;
+  }
+
   private static fromIsoDateToMaskedDate(s: string): string {
     const [y, m, d] = s.split('-').map(String);
-    // return `${d.toString().padStart(2, '0')}/${m.toString().padStart(2, '0')}/${y}`;
     return `${d}/${m}/${y}`;
   }
 

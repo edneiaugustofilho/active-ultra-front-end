@@ -1,4 +1,4 @@
-<script src="../auth/auth.ts"></script>
+<script src="/auth/auth.ts"></script>
 <mat-sidenav-container class="min-h-screen">
   <!-- LEFT MENU -->
   <mat-sidenav
@@ -16,15 +16,15 @@
     <mat-nav-list>
       <a mat-list-item [routerLink]="['/dashboard']">
         <mat-icon matListItemIcon>dashboard</mat-icon>
-        <span matListItemTitle>Dashboard</span>
+        <span matListItemTitle>Painel</span>
       </a>
       <a mat-list-item [routerLink]="['/assets']">
         <mat-icon matListItemIcon>inventory_2</mat-icon>
-        <span matListItemTitle>Assets</span>
+        <span matListItemTitle>Ativos</span>
       </a>
       <a mat-list-item (click)="logout()">
         <mat-icon matListItemIcon>logout</mat-icon>
-        <span matListItemTitle>Logout</span>
+        <span matListItemTitle>Sair</span>
       </a>
     </mat-nav-list>
   </mat-sidenav>
@@ -37,7 +37,7 @@
         <button mat-icon-button (click)="toggleSidenav()">
           <mat-icon>menu</mat-icon>
         </button>
-        <span>Home</span>
+        <span>Bem-vindo</span>
       </div>
 
       <!-- right side of toolbar (user, etc) -->
@@ -46,7 +46,7 @@
         <!-- <span>{{ userName }}</span> -->
         <button mat-button (click)="logout()">
           <mat-icon class="mr-1">logout</mat-icon>
-          Logout
+          Sair
         </button>
       </div>
     </mat-toolbar>

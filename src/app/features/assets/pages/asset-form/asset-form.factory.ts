@@ -43,8 +43,8 @@ export type AssetFormGroup = FormGroup<{
 
   insuranceCompany: FormControl<string | null>;
   insurancePolicyNumber: FormControl<string | null>;
-  insuranceExpiryDate: FormControl<Date | null>;
-  registrationExpiryDate: FormControl<Date | null>;
+  insuranceExpiryDate: FormControl<string | null>;
+  registrationExpiryDate: FormControl<string | null>;
   currentDriver: FormControl<string | null>;
   gpsTrackerId: FormControl<string | null>;
   notes: FormControl<string | null>;
@@ -96,8 +96,8 @@ export function buildAssetForm(fb: FormBuilder): AssetFormGroup {
 
     insuranceCompany: fb.control<string | null>(null),
     insurancePolicyNumber: fb.control<string | null>(null),
-    insuranceExpiryDate: fb.control<Date | null>(null),
-    registrationExpiryDate: fb.control<Date | null>(null),
+    insuranceExpiryDate: fb.control<string | null>(null),
+    registrationExpiryDate: fb.control<string | null>(null),
     currentDriver: fb.control<string | null>(null),
     gpsTrackerId: fb.control<string | null>(null),
     notes: fb.control<string | null>(null),

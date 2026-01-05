@@ -1,16 +1,16 @@
 <div class="flex items-center justify-between mb-4">
-  <h1 class="text-xl font-semibold">Assets</h1>
+  <h1 class="text-xl font-semibold">Ativos</h1>
 
   <button mat-raised-button routerLink="/assets/new">
     <mat-icon class="mr-1">add</mat-icon>
-    New Asset
+    Novo Ativo
   </button>
 </div>
 
 <mat-form-field class="w-full mb-4">
   <mat-label>Pesquisa</mat-label>
   <input matInput
-         placeholder="Nome, código, categoria ..."
+         placeholder="pesquisa ..."
          [value]="searchRequest.query"
          (input)="onQueryChange($any($event.target).value)"/>
   <mat-icon matPrefix>search</mat-icon>
@@ -30,11 +30,11 @@
 </mat-form-field>
 
 @if (loading) {
-  <div>Loading...</div>
+  <div>Carregando...</div>
 } @else if (error) {
   <div class="text-red-400">{{ error }}</div>
 } @else if (!page || (page.content?.length ?? 0) === 0) {
-  <div>No assets found.</div>
+  <div>Nenhum ativo encontrado.</div>
 } @else {
   <div class="grid gap-3">
     @for (a of page.content; track a.id) {
@@ -45,7 +45,9 @@
           <div>
             <div class="font-semibold">{{ a.name }}</div>
             <div class="opacity-70 text-sm">
-              {{ a.code }} • {{ a.category }} • {{ a.status }}
+              {{ a.code }} •
+              {{ translateEnum(ASSET_CATEGORY_PT_BR, a.category) }} •
+              {{ translateEnum(ASSET_STATUS_PT_BR, a.status) }}
             </div>
           </div>
 

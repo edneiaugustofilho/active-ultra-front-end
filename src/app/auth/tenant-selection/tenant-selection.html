@@ -1,24 +1,24 @@
 <mat-card class="login-card">
-  <img ngSrc="assets/active-ultra-logo.png" alt="Active Ultra Logo" class="login-logo" height="256" width="256"/>
+  <img ngSrc="assets/active-ultra-logo.png" alt="Logo Active Ultra" class="login-logo" height="256" width="256"/>
 
-  <h2 class="login-title">Select Tenant</h2>
+  <h2 class="login-title">Selecionar Tenant</h2>
 
   @if (loading) {
-    <p>Loading tenants...</p>
+    <p>Carregando tenants...</p>
   } @else {
     @if (loadErrorMessage) {
       <div class="error-text">{{ loadErrorMessage }}</div>
     }
 
     @if (!loadErrorMessage && tenants.length === 0) {
-      <p>No tenants found for this user.</p>
+      <p>Nenhum tenant encontrado para este usuário.</p>
     } @else if (!loadErrorMessage && tenants.length > 0) {
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <!-- Tenant select -->
         <mat-form-field appearance="fill" class="full-width">
           <mat-label>Tenant</mat-label>
 
-          <mat-select formControlName="tenantId" placeholder="Select your tenant">
+          <mat-select formControlName="tenantId" placeholder="Selecione seu tenant">
             @for (tenant of tenants; track tenant.id) {
               <mat-option [value]="tenant.id">
                 {{ tenant.name }}
@@ -27,7 +27,7 @@
           </mat-select>
 
           @if (form.get('tenantId')?.hasError('required') && form.get('tenantId')?.touched) {
-            <mat-error>Tenant is required</mat-error>
+            <mat-error>Tenant é obrigatório</mat-error>
           }
         </mat-form-field>
 
@@ -41,16 +41,17 @@
           mat-raised-button
           color="primary"
           class="full-width login-btn"
-          [disabled]="form.invalid || submitting" >
-          {{ submitting ? 'Continuing...' : 'Continue' }}
+          [disabled]="form.invalid || submitting">
+          {{ submitting ? 'Continuando...' : 'Continuar' }}
         </button>
+
         <button
           (click)="logout()"
           mat-raised-button
           color="tertiary"
           class="full-width login-btn"
-          [disabled]="form.invalid || submitting" >
-          {{ submitting ? 'Leaving...' : 'Leave' }}
+          [disabled]="form.invalid || submitting">
+          {{ submitting ? 'Saindo...' : 'Sair' }}
         </button>
       </form>
     }

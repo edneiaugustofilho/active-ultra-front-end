@@ -12,6 +12,8 @@ import {MatPaginatorModule, PageEvent} from '@angular/material/paginator';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {RouterLink} from '@angular/router';
+import {translateEnum} from '../../../../shared/i18n/translate.util';
+import {ASSET_CATEGORY_PT_BR, ASSET_STATUS_PT_BR} from '../../../../shared/all-types';
 
 @Component({
   standalone: true,
@@ -26,7 +28,7 @@ import {RouterLink} from '@angular/router';
     MatFormFieldModule,
     MatInputModule,
   ],
-  templateUrl: './assets.html',
+  templateUrl: './assets-list.html',
 })
 export class AssetsComponent implements OnInit {
   private readonly api = inject(AssetApi);
@@ -82,4 +84,7 @@ export class AssetsComponent implements OnInit {
     this.load();
   }
 
+  protected readonly translateEnum = translateEnum;
+  protected readonly ASSET_CATEGORY_PT_BR = ASSET_CATEGORY_PT_BR;
+  protected readonly ASSET_STATUS_PT_BR = ASSET_STATUS_PT_BR;
 }

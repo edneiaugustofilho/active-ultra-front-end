@@ -35,7 +35,7 @@ export const appRoutes: Routes = [
             path: '',
             pathMatch: 'full',
             loadComponent: () =>
-              import('./features/assets/pages/assets/assets')
+              import('./features/assets/pages/assets-list/assets-list')
                 .then(m => m.AssetsComponent),
           },
           {

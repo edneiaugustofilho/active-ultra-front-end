@@ -49,7 +49,7 @@ export class LoginComponent {
       },
       error: (err) => {
         this.loading = false;
-        this.errorMessage = err.error?.message || 'Invalid credentials';
+        this.errorMessage = err.error?.message || 'Erro ao fazer login';
       },
     });
   }

@@ -1,9 +1,10 @@
-export type AssetCategory = 'VEHICLE' | 'HEAVY_EQUIPMENT' | 'TRAILER' | 'FORKLIFT' | 'MACHINE' | 'MANUFACTURING_EQUIPMENT' | 'PRODUCTION_LINE' | 'PUMP' | 'MOTOR' | 'COMPRESSOR' | 'GENERATOR' | 'ELECTRICAL_SYSTEM' | 'UPS' | 'TRANSFORMER' | 'PANEL' | 'IT_EQUIPMENT' | 'HVAC' | 'AIR_CONDITIONER' | 'CHILLER' | 'BOILER' | 'BUILDING' | 'ROOM' | 'FACILITY' | 'STRUCTURE' | 'ROOFING' | 'FIRE_SYSTEM' | 'ELEVATOR' | 'TOOL' | 'POWER_TOOL' | 'INSTRUMENT' | 'SENSOR' | 'SAFETY_EQUIPMENT' | 'FIRE_EXTINGUISHER' | 'PPE' | 'FURNITURE' | 'OFFICE_EQUIPMENT' | 'LAND' | 'REAL_ESTATE' | 'OTHER' | 'UNKNOWN';
-export type AssetStatus = 'ACTIVE' | 'INACTIVE' | 'UNDER_MAINTENANCE' | 'SOLD' | 'RENTED' | 'WASTED';
-export type AssetVehicleType = 'CAR' | 'PICKUP' | 'TRUCK' | 'VAN' | 'BUS' | 'MOTORCYCLE' | 'TRAILER' | 'OTHER';
-export type AssetFuelType = 'GASOLINE' | 'ETHANOL' | 'FLEX' | 'DIESEL' | 'CNG' | 'ELECTRIC' | 'HYBRID' | 'OTHER';
-export type AssetTransmissionType = 'MANUAL' | 'AUTOMATIC' | 'CVT' | 'AUTOMATED';
-export type AssetOwnershipType = 'OWNED' | 'LEASED' | 'RENTED' | 'THIRD_PARTY';
+import {
+  AssetCategory,
+  AssetFuelType,
+  AssetOwnershipType, AssetStatus,
+  AssetTransmissionType,
+  AssetVehicleType
+} from '../../../shared/all-types';
 
 export interface AssetUpsertRequest {
   name: string;
@@ -11,9 +12,9 @@ export interface AssetUpsertRequest {
 
   code: string;
   category: AssetCategory;
+  status: AssetStatus;
   serialNumber?: string;
   location?: string;
-  status: AssetStatus;
 
   acquisitionDate?: string; // 'YYYY-MM-DD'
   expectedLifetimeMonths?: number;

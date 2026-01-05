@@ -73,7 +73,6 @@ export class TenantSelectionComponent {
   }
 
   onSubmit(): void {
-    console.log("submitting");
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;
