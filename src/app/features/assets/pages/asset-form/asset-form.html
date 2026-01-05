@@ -13,14 +13,14 @@
           </h2>
 
           @if (isEditMode) {
-            <div class="opacity-70 text-sm mt-1">
+            <div class="meta-text mt-1">
               ID: {{ form.controls.id.value }} • Criado em: {{ form.controls.createdAt.value }} •
               Atualizado em: {{ form.controls.updatedAt.value }}
             </div>
           }
         </div>
 
-        <div class="flex gap-2">
+        <div class="header-actions">
           <button mat-button type="button" routerLink="/assets">Voltar</button>
           <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
             Salvar

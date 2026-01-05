@@ -30,10 +30,10 @@
   </mat-sidenav>
 
   <!-- MAIN CONTENT -->
-  <mat-sidenav-content class="flex flex-col min-h-screen darker-gray">
+  <mat-sidenav-content class="app-shell">
     <!-- TOP BAR -->
-    <mat-toolbar color="primary" class="justify-between">
-      <div class="flex items-center gap-2">
+    <mat-toolbar color="primary" class="toolbar-row">
+      <div class="toolbar-left">
         <button mat-icon-button (click)="toggleSidenav()">
           <mat-icon>menu</mat-icon>
         </button>
@@ -41,7 +41,7 @@
       </div>
 
       <!-- right side of toolbar (user, etc) -->
-      <div class="flex items-center gap-4">
+      <div class="toolbar-right">
         <!-- in future you can show user name from /me here -->
         <!-- <span>{{ userName }}</span> -->
         <button mat-button (click)="logout()">
@@ -52,7 +52,7 @@
     </mat-toolbar>
 
     <!-- PAGE CONTENT (ROUTER OUTLET) -->
-    <main class="p-4 flex-1">
+    <main class="content">
       <!-- Here we render the "inner" pages, e.g. dashboard -->
       <router-outlet></router-outlet>
     </main>
