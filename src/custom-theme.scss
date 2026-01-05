@@ -19,6 +19,16 @@ $theme-config: (
   density: 0
 );
 
+$font-size-sm: 0.875rem;
+$font-size-md: 1rem;
+$font-size-lg: 1.125rem;
+$font-size-xl: 1.25rem;
+
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+
+
 /* -----------------------------
    2) Global HTML + Material theme
 ------------------------------ */
@@ -45,4 +55,21 @@ body {
 .full-width {
   width: 100%;
   margin-bottom: 1.5rem;
+}
+
+.page-title {
+  font-size: 1.25rem;   // replaces text-xl
+  font-weight: 600;     // replaces font-semibold
+  line-height: 1.4;
+  margin: 0;
+}
+
+.card-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.toolbar-title {
+  font-size: 1.25rem;
+  font-weight: 500;
 }
