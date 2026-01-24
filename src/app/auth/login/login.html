@@ -1,5 +1,8 @@
 <mat-card class="login-card">
-  <img ngSrc="assets/active-ultra-logo.png" alt="Logo Active Ultra" class="login-logo" height="256" width="256">
+  <img ngSrc="assets/active-ultra-logo.png"
+       alt="Logo Active Ultra"
+       class="login-logo" width="256" height="256"
+       priority="low"/>
   <h2 class="login-title">Entrar</h2>
 
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
