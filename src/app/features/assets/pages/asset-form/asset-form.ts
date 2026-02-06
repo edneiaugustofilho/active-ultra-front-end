@@ -73,7 +73,7 @@ export class AssetFormComponent implements OnInit {
 
   loadAsset() {
     this.assetService.findById(this.assetId!)
-      .subscribe(asset => this.form.patchValue(AssetMapper.toFormValue(asset)));
+      .subscribe(assetResponse => this.form.patchValue(AssetMapper.toFormValue(assetResponse)));
   }
 
   save() {

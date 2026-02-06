@@ -4,13 +4,11 @@ import {Observable} from 'rxjs';
 import {environment} from '../../../environments/environment';
 import {AssetResponse, AssetUpsertRequest} from './dto/asset.dto';
 import {PageResponse} from './dto/page-response';
-import {ToastService} from '../../shared/toast/toast';
 
 @Injectable({providedIn: 'root'})
 export class AssetApi {
   private readonly http = inject(HttpClient);
 
-  // Adjust if your backend path changes
   private readonly baseUrl = `${environment.apiBaseUrl}/assets`;
 
   findById(id: string): Observable<AssetResponse> {

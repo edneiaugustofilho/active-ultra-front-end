@@ -1,5 +1,6 @@
-import { AssetResponse, AssetUpsertRequest } from '../../../../core/api/dto/asset.dto';
-import { AssetFormValue } from './asset-form.types';
+import {AssetResponse, AssetUpsertRequest} from '../../../../core/api/dto/asset.dto';
+import {AssetFormValue} from './asset-form.types';
+import {MapperHelper} from '../../../../shared/mapper.helper';
 
 export class AssetMapper {
 
@@ -8,8 +9,8 @@ export class AssetMapper {
     return {
       // meta
       id: a.id ?? null,
-      createdAt: a.createdAt ? this.fromIsoDateTime(a.createdAt) : null,
-      updatedAt: a.updatedAt ? this.fromIsoDateTime(a.updatedAt) : null,
+      createdAt: a.createdAt ? MapperHelper.fromIsoDateTime(a.createdAt) : null,
+      updatedAt: a.updatedAt ? MapperHelper.fromIsoDateTime(a.updatedAt) : null,
 
       // required on API
       name: a.name ?? '',
@@ -23,7 +24,7 @@ export class AssetMapper {
       serialNumber: a.serialNumber ?? null,
       location: a.location ?? null,
 
-      acquisitionDate: a.acquisitionDate ? this.fromIsoDateToMaskedDate(a.acquisitionDate) : null,
+      acquisitionDate: a.acquisitionDate ? MapperHelper.fromIsoDateToMaskedDate(a.acquisitionDate) : null,
       expectedLifetimeMonths: a.expectedLifetimeMonths ?? null,
 
       brand: a.brand ?? null,
@@ -51,8 +52,8 @@ export class AssetMapper {
       insuranceCompany: a.insuranceCompany ?? null,
       insurancePolicyNumber: a.insurancePolicyNumber ?? null,
 
-      insuranceExpiryDate: a.insuranceExpiryDate ? this.fromIsoDateToMaskedDate(a.insuranceExpiryDate) : null,
-      registrationExpiryDate: a.registrationExpiryDate ? this.fromIsoDateToMaskedDate(a.registrationExpiryDate) : null,
+      insuranceExpiryDate: a.insuranceExpiryDate ? MapperHelper.fromIsoDateToMaskedDate(a.insuranceExpiryDate) : null,
+      registrationExpiryDate: a.registrationExpiryDate ? MapperHelper.fromIsoDateToMaskedDate(a.registrationExpiryDate) : null,
 
       currentDriver: a.currentDriver ?? null,
       gpsTrackerId: a.gpsTrackerId ?? null,
@@ -63,106 +64,49 @@ export class AssetMapper {
   /** Form -> API (create/update) */
   static toUpsertRequest(v: AssetFormValue): AssetUpsertRequest {
     return {
-      name: this.requiredTrim(v.name),
-      acquisitionValue: this.requiredNumber(v.acquisitionValue),
+      name: MapperHelper.requiredTrim(v.name),
+      acquisitionValue: MapperHelper.requiredNumber(v.acquisitionValue),
 
-      code: this.requiredTrim(v.code),
-      category: this.requiredValue(v.category),
-      status: this.requiredValue(v.status),
+      code: MapperHelper.requiredTrim(v.code),
+      category: MapperHelper.requiredValue(v.category),
+      status: MapperHelper.requiredValue(v.status),
 
       // Optional strings become undefined if blank
-      serialNumber: this.optString(v.serialNumber),
-      location: this.optString(v.location),
+      serialNumber: MapperHelper.optString(v.serialNumber),
+      location: MapperHelper.optString(v.location),
 
-      acquisitionDate: v.acquisitionDate ? this.fromMaskedDateToIsoDate(v.acquisitionDate) : undefined,
-      expectedLifetimeMonths: this.optNumber(v.expectedLifetimeMonths),
+      acquisitionDate: v.acquisitionDate ? MapperHelper.fromMaskedDateToIsoDate(v.acquisitionDate) : undefined,
+      expectedLifetimeMonths: MapperHelper.optNumber(v.expectedLifetimeMonths),
 
-      brand: this.optString(v.brand),
-      model: this.optString(v.model),
-      modelYear: this.optNumber(v.modelYear),
-      manufactureYear: this.optNumber(v.manufactureYear),
-      licensePlate: this.optString(v.licensePlate),
-      chassisNumber: this.optString(v.chassisNumber),
-      renavam: this.optString(v.renavam),
-      fleetNumber: this.optString(v.fleetNumber),
-      color: this.optString(v.color),
+      brand: MapperHelper.optString(v.brand),
+      model: MapperHelper.optString(v.model),
+      modelYear: MapperHelper.optNumber(v.modelYear),
+      manufactureYear: MapperHelper.optNumber(v.manufactureYear),
+      licensePlate: MapperHelper.optString(v.licensePlate),
+      chassisNumber: MapperHelper.optString(v.chassisNumber),
+      renavam: MapperHelper.optString(v.renavam),
+      fleetNumber: MapperHelper.optString(v.fleetNumber),
+      color: MapperHelper.optString(v.color),
 
       vehicleType: v.vehicleType ?? undefined,
       fuelType: v.fuelType ?? undefined,
       transmissionType: v.transmissionType ?? undefined,
       ownershipType: v.ownershipType ?? undefined,
 
-      odometerKm: this.optNumber(v.odometerKm),
-      seatingCapacity: this.optNumber(v.seatingCapacity),
-      axleCount: this.optNumber(v.axleCount),
-      maxLoadKg: this.optNumber(v.maxLoadKg),
-      engineDisplacementCc: this.optNumber(v.engineDisplacementCc),
-      tankCapacityLiters: this.optNumber(v.tankCapacityLiters),
+      odometerKm: MapperHelper.optNumber(v.odometerKm),
+      seatingCapacity: MapperHelper.optNumber(v.seatingCapacity),
+      axleCount: MapperHelper.optNumber(v.axleCount),
+      maxLoadKg: MapperHelper.optNumber(v.maxLoadKg),
+      engineDisplacementCc: MapperHelper.optNumber(v.engineDisplacementCc),
+      tankCapacityLiters: MapperHelper.optNumber(v.tankCapacityLiters),
 
-      insuranceCompany: this.optString(v.insuranceCompany),
-      insurancePolicyNumber: this.optString(v.insurancePolicyNumber),
-      insuranceExpiryDate: v.insuranceExpiryDate ? this.fromMaskedDateToIsoDate(v.insuranceExpiryDate) : undefined,
-      registrationExpiryDate: v.registrationExpiryDate ? this.fromMaskedDateToIsoDate(v.registrationExpiryDate) : undefined,
-      currentDriver: this.optString(v.currentDriver),
-      gpsTrackerId: this.optString(v.gpsTrackerId),
-      notes: this.optString(v.notes),
+      insuranceCompany: MapperHelper.optString(v.insuranceCompany),
+      insurancePolicyNumber: MapperHelper.optString(v.insurancePolicyNumber),
+      insuranceExpiryDate: v.insuranceExpiryDate ? MapperHelper.fromMaskedDateToIsoDate(v.insuranceExpiryDate) : undefined,
+      registrationExpiryDate: v.registrationExpiryDate ? MapperHelper.fromMaskedDateToIsoDate(v.registrationExpiryDate) : undefined,
+      currentDriver: MapperHelper.optString(v.currentDriver),
+      gpsTrackerId: MapperHelper.optString(v.gpsTrackerId),
+      notes: MapperHelper.optString(v.notes),
     };
-  }
-
-  // ---------------- helpers ----------------
-
-  /** yyyy-MM-dd (best for Java LocalDate) */
-  private static toIsoDate(d: Date): string {
-    const yyyy = d.getFullYear();
-    const mm = String(d.getMonth() + 1).padStart(2, '0');
-    const dd = String(d.getDate()).padStart(2, '0');
-    return `${yyyy}-${mm}-${dd}`;
-  }
-
-  private static fromIsoDate(s: string): Date {
-    const datePart = s.length >= 10 ? s.substring(0, 10) : s;
-    const [y, m, d] = datePart.split('-').map(Number);
-    return new Date(y, (m ?? 1) - 1, d ?? 1);
-  }
-
-  private static fromIsoDateTime(dt: string): string {
-    const datePart = dt.length >= 10 ? dt.substring(0, 10) : dt;
-    const timePart = dt.length >= 19 ? dt.substring(11, 19) : dt;
-    const [y, m, d] = datePart.split('-').map(String);
-    const [h, i, s] = timePart.split(':').map(String);
-    return `${d}/${m}/${y} ${h}:${i}`;
-  }
-
-  private static fromIsoDateToMaskedDate(s: string): string {
-    const [y, m, d] = s.split('-').map(String);
-    return `${d}/${m}/${y}`;
-  }
-
-  private static fromMaskedDateToIsoDate(s: string): string {
-    const [d, m, y] = s.split('/').map(String);
-    return `${y}-${m}-${d}`;
-  }
-
-  private static optString(v: string | null): string | undefined {
-    if (v == null) return undefined;
-    const t = v.trim();
-    return t.length ? t : undefined;
-  }
-
-  private static requiredTrim(v: string): string {
-    return (v ?? '').trim();
-  }
-
-  private static optNumber(v: number | null): number | undefined {
-    return v == null ? undefined : v;
-  }
-
-  private static requiredNumber(v: number | null): number {
-    if (v == null) throw new Error('acquisitionValue is required');
-    return v;
-  }
-
-  private static requiredValue<T>(v: T | null): T {
-    return v as T;
   }
 }

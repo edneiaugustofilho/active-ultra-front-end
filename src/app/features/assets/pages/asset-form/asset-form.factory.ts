@@ -11,10 +11,10 @@ export type AssetFormGroup = FormGroup<{
   acquisitionValue: FormControl<number | null>;
 
   code: FormControl<string>;
-  category: FormControl<AssetFormValue['category']>;
+  category: FormControl<AssetFormValue['category'] | null>;
   serialNumber: FormControl<string | null>;
   location: FormControl<string | null>;
-  status: FormControl<AssetFormValue['status']>;
+  status: FormControl<AssetFormValue['status'] | null>;
 
   acquisitionDate: FormControl<string | null>;
   expectedLifetimeMonths: FormControl<number | null>;
