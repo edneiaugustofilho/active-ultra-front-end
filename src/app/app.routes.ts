@@ -35,21 +35,21 @@ export const appRoutes: Routes = [
             path: '',
             pathMatch: 'full',
             loadComponent: () =>
-              import('./features/assets/pages/assets-list/assets-list')
+              import('./features/assets/pages/asset/asset-list/assets-list')
                 .then(m => m.AssetsComponent),
           },
           {
             path: 'new',
             pathMatch: 'full',
             loadComponent: () =>
-              import('./features/assets/pages/asset-form/asset-form')
+              import('./features/assets/pages/asset/asset-form/asset-form')
                 .then(m => m.AssetFormComponent),
           },
           {
             path: ':id',
             pathMatch: 'full',
             loadComponent: () =>
-              import('./features/assets/pages/asset-form/asset-form')
+              import('./features/assets/pages/asset/asset-form/asset-form')
                 .then(m => m.AssetFormComponent),
           },
         ],

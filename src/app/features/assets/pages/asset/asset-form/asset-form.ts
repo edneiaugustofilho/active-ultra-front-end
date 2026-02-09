@@ -7,20 +7,20 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTabsModule} from '@angular/material/tabs';
 import {ActivatedRoute, Router, RouterLink} from '@angular/router';
-import {AssetApi} from '../../../../core/api/asset-api';
-import {AssetUpsertRequest} from '../../../../core/api/dto/asset.dto';
+import {AssetApi} from '../../../../../core/api/asset-api';
+import {AssetUpsertRequest} from '../../../../../core/api/dto/asset.dto';
 import {buildAssetForm} from './asset-form.factory';
 import {AssetMapper} from './asset.mapper';
 import {MatNativeDateModule, provideNativeDateAdapter} from '@angular/material/core';
 import {NgxMaskDirective} from 'ngx-mask';
-import {ToastService} from '../../../../shared/toast/toast';
+import {ToastService} from '../../../../../shared/toast/toast';
 import {
   ASSET_CATEGORY_PT_BR,
   ASSET_FUEL_TYPE_PT_BR, ASSET_OWNERSHIP_TYPE_PT_BR,
   ASSET_STATUS_PT_BR, ASSET_TRANSMISSION_TYPE_PT_BR,
   ASSET_VEHICLE_TYPE_PT_BR
-} from '../../../../shared/all-types';
-import {normalizeCurrency} from '../../../../shared/normalizers.util';
+} from '../../../../../shared/all-types';
+import {normalizeCurrency} from '../../../../../shared/normalizers.util';
 
 @Component({
   standalone: true,

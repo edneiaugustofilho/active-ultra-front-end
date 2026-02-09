@@ -4,7 +4,7 @@ import {
   AssetStatus,
   AssetTransmissionType,
   AssetVehicleType
-} from '../../../../shared/all-types';
+} from '../../../../../shared/all-types';
 
 export type AssetFormValue = {
 

@@ -1,6 +1,6 @@
-import {AssetResponse, AssetUpsertRequest} from '../../../../core/api/dto/asset.dto';
+import {AssetResponse, AssetUpsertRequest} from '../../../../../core/api/dto/asset.dto';
 import {AssetFormValue} from './asset-form.types';
-import {MapperHelper} from '../../../../shared/mapper.helper';
+import {MapperHelper} from '../../../../../shared/mapper.helper';
 
 export class AssetMapper {
 
