@@ -53,7 +53,7 @@
 
           <div class="align-right">
             <div class="font-semibold">
-              {{ a.acquisitionValue | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}
+              {{ a.acquisitionValue | brlCurrency }}
             </div>
             <div class="meta-text">
               {{ a.acquisitionDate }}

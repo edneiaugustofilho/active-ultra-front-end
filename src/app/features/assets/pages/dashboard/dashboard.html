@@ -1,0 +1,115 @@
+@if (dashboard$ | async; as d) {
+  <section class="dash">
+    <header class="dash__header">
+      <div>
+        <h1 class="dash__title">Dashboard</h1>
+        <p class="dash__subtitle">Resumo de ativos</p>
+      </div>
+
+      <div class="dash__meta">
+        <span class="chip">Atualizado: {{ d.updatedAt | date: 'dd/MM/yyyy HH:mm' }}</span>
+      </div>
+    </header>
+
+    <!-- KPI cards -->
+    <div class="kpis">
+      <div class="card kpi">
+        <div class="kpi__label">Total de ativos</div>
+        <div class="kpi__value">{{ d.totalAssets }}</div>
+      </div>
+
+      <div class="card kpi">
+        <div class="kpi__label">Valor total de aquisição</div>
+        <div class="kpi__value">{{ d.totalAcquisitionValue | brlCurrency }}</div>
+      </div>
+    </div>
+
+    <!-- Two columns -->
+    <div class="grid">
+      <div class="card">
+        <div class="card__header">
+          <h2 class="card__title">Por status</h2>
+          <span class="chip">{{ d.byStatus.length }} itens</span>
+        </div>
+
+        <div class="table">
+          <div class="table__row table__head">
+            <div>Status</div>
+            <div class="num">Qtd</div>
+            <div class="num">Valor</div>
+          </div>
+
+          @for (row of d.byStatus; track row.status) {
+            <div class="table__row">
+              <div class="row__main">
+                <span class="badge">{{ translateEnum(ASSET_STATUS_PT_BR, row.status)  }}</span>
+              </div>
+              <div class="num">{{ row.totalAssets }}</div>
+              <div class="num">{{ row.totalAcquisitionValue | brlCurrency }}</div>
+            </div>
+          } @empty {
+            <div class="empty">Sem dados.</div>
+          }
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__header">
+          <h2 class="card__title">Por categoria</h2>
+          <span class="chip">{{ d.byCategory.length }} itens</span>
+        </div>
+
+        <div class="table">
+          <div class="table__row table__head">
+            <div>Categoria</div>
+            <div class="num">Qtd</div>
+            <div class="num">Valor</div>
+          </div>
+
+          @for (row of d.byCategory; track row.category) {
+            <div class="table__row">
+              <div class="row__main">
+                <span class="badge badge--muted">{{ translateEnum(ASSET_CATEGORY_PT_BR, row.category) }} </span>
+              </div>
+              <div class="num">{{ row.totalAssets }}</div>
+              <div class="num">{{ row.totalAcquisitionValue | brlCurrency }}</div>
+            </div>
+          } @empty {
+            <div class="empty">Sem dados.</div>
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+}
+
+<!-- Loading state -->
+@if (!(dashboard$ | async)) {
+  <section class="dash">
+    <div class="card skeleton">
+      <div class="sk__line sk__title"></div>
+      <div class="sk__line"></div>
+      <div class="sk__line"></div>
+    </div>
+
+    <div class="kpis">
+      <div class="card kpi skeleton">
+        <div class="sk__line sk__kpi"></div>
+        <div class="sk__line sk__kpi2"></div>
+      </div>
+      <div class="card kpi skeleton">
+        <div class="sk__line sk__kpi"></div>
+        <div class="sk__line sk__kpi2"></div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card skeleton">
+        <div class="sk__line sk__title"></div>
+      </div>
+      <div class="card skeleton">
+        <div class="sk__line sk__title"></div>
+      </div>
+    </div>
+  </section>
+}

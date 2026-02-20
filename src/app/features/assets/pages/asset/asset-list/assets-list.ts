@@ -4,7 +4,6 @@ import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 
-import {AssetResponse} from '../../../../../core/api/dto/asset.dto';
 import {AssetApi} from '../../../../../core/api/asset-api';
 import {PageResponse} from '../../../../../core/api/dto/page-response';
 import {AssetSearchRequest} from '../../../../../core/api/dto/asset-search-request';
@@ -14,6 +13,8 @@ import {MatInputModule} from '@angular/material/input';
 import {RouterLink} from '@angular/router';
 import {translateEnum} from '../../../../../shared/i18n/translate.util';
 import {ASSET_CATEGORY_PT_BR, ASSET_STATUS_PT_BR} from '../../../../../shared/all-types';
+import {AssetDto} from '../../../../../core/api/dto/asset.dto';
+import {BrlCurrencyPipe} from '../../../../../shared/pipe/brl-currency.pipe';
 
 @Component({
   standalone: true,
@@ -27,16 +28,17 @@ import {ASSET_CATEGORY_PT_BR, ASSET_STATUS_PT_BR} from '../../../../../shared/al
     MatPaginatorModule,
     MatFormFieldModule,
     MatInputModule,
+    BrlCurrencyPipe,
   ],
   templateUrl: './assets-list.html',
 })
-export class AssetsComponent implements OnInit {
-  private readonly api = inject(AssetApi);
+export class AssetsListComponent implements OnInit {
+  private readonly assetApi = inject(AssetApi);
 
   loading = true;
   error?: string;
 
-  page?: PageResponse<AssetResponse>;
+  page?: PageResponse<AssetDto>;
   searchRequest: AssetSearchRequest = {
     query: "",
     pageNumber: 1,
@@ -53,7 +55,7 @@ export class AssetsComponent implements OnInit {
     this.loading = true;
     this.error = undefined;
 
-    this.api.search(this.searchRequest)
+    this.assetApi.search(this.searchRequest)
       .subscribe({
         next: (response) => {
           this.page = response;

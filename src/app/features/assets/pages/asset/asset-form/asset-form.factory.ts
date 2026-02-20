@@ -1,72 +1,23 @@
-// asset-form.factory.ts
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {AssetFormValue} from './asset-form.types';
+import {FormBuilder, Validators} from '@angular/forms';
+import {AssetFormModel} from './asset-form.model';
 
-export type AssetFormGroup = FormGroup<{
-  id: FormControl<string | null>;
-  createdAt: FormControl<string | null>;
-  updatedAt: FormControl<string | null>;
-
-  name: FormControl<string>;
-  acquisitionValue: FormControl<number | null>;
-
-  code: FormControl<string>;
-  category: FormControl<AssetFormValue['category'] | null>;
-  serialNumber: FormControl<string | null>;
-  location: FormControl<string | null>;
-  status: FormControl<AssetFormValue['status'] | null>;
-
-  acquisitionDate: FormControl<string | null>;
-  expectedLifetimeMonths: FormControl<number | null>;
-
-  brand: FormControl<string | null>;
-  model: FormControl<string | null>;
-  modelYear: FormControl<number | null>;
-  manufactureYear: FormControl<number | null>;
-  licensePlate: FormControl<string | null>;
-  chassisNumber: FormControl<string | null>;
-  renavam: FormControl<string | null>;
-  fleetNumber: FormControl<string | null>;
-  color: FormControl<string | null>;
-
-  vehicleType: FormControl<AssetFormValue['vehicleType']>;
-  fuelType: FormControl<AssetFormValue['fuelType']>;
-  transmissionType: FormControl<AssetFormValue['transmissionType']>;
-  ownershipType: FormControl<AssetFormValue['ownershipType']>;
-
-  odometerKm: FormControl<number | null>;
-  seatingCapacity: FormControl<number | null>;
-  axleCount: FormControl<number | null>;
-  maxLoadKg: FormControl<number | null>;
-  engineDisplacementCc: FormControl<number | null>;
-  tankCapacityLiters: FormControl<number | null>;
-
-  insuranceCompany: FormControl<string | null>;
-  insurancePolicyNumber: FormControl<string | null>;
-  insuranceExpiryDate: FormControl<string | null>;
-  registrationExpiryDate: FormControl<string | null>;
-  currentDriver: FormControl<string | null>;
-  gpsTrackerId: FormControl<string | null>;
-  notes: FormControl<string | null>;
-}>;
-
-export function buildAssetForm(fb: FormBuilder): AssetFormGroup {
+export function buildAssetForm(fb: FormBuilder) {
   return fb.group({
-    // meta (disabled)
-    id: fb.control<string | null>({value: null, disabled: true}),
-    createdAt: fb.control<string | null>({value: null, disabled: true}),
-    updatedAt: fb.control<string | null>({value: null, disabled: true}),
+    id: fb.control<string | null>({ value: null, disabled: true }),
+    createdAt: fb.control<string | null>({ value: null, disabled: true }),
+    updatedAt: fb.control<string | null>({ value: null, disabled: true }),
 
     // required
-    name: fb.nonNullable.control('', [Validators.required]),
-    acquisitionValue: fb.control<number | null>(null, [Validators.required]),
-
-    code: fb.nonNullable.control('', [Validators.required]),
-    category: fb.control<AssetFormValue['category']>(null, [Validators.required]),
-    status: fb.control<AssetFormValue['status']>(null, [Validators.required]),
+    name: fb.nonNullable.control<string>('', [Validators.required]),
+    category: fb.control<AssetFormModel['category'] | null>(null, [Validators.required]),
+    status: fb.control<AssetFormModel['status'] | null>(null, [Validators.required]),
+    serialNumber: fb.nonNullable.control<string>('', [Validators.required, Validators.min(3), Validators.max(60)]),
 
     // optional
-    serialNumber: fb.control<string | null>(null),
+    code: fb.control<string | null>(null),
+
+    acquisitionValue: fb.control<number | null>(null),
+
     location: fb.control<string | null>(null),
 
     acquisitionDate: fb.control<string | null>(null),
@@ -82,10 +33,10 @@ export function buildAssetForm(fb: FormBuilder): AssetFormGroup {
     fleetNumber: fb.control<string | null>(null),
     color: fb.control<string | null>(null),
 
-    vehicleType: fb.control<AssetFormValue['vehicleType']>(null),
-    fuelType: fb.control<AssetFormValue['fuelType']>(null),
-    transmissionType: fb.control<AssetFormValue['transmissionType']>(null),
-    ownershipType: fb.control<AssetFormValue['ownershipType']>(null),
+    vehicleType: fb.control<AssetFormModel['vehicleType'] | null>(null),
+    fuelType: fb.control<AssetFormModel['fuelType'] | null>(null),
+    transmissionType: fb.control<AssetFormModel['transmissionType'] | null>(null),
+    ownershipType: fb.control<AssetFormModel['ownershipType'] | null>(null),
 
     odometerKm: fb.control<number | null>(null),
     seatingCapacity: fb.control<number | null>(null),

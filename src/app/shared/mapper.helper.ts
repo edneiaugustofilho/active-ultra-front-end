@@ -33,18 +33,18 @@ export class MapperHelper {
     return `${y}-${m}-${d}`;
   }
 
-  public static optString(v: string | null): string | undefined {
-    if (v == null) return undefined;
+  public static optString(v: string | null): string | null {
+    if (v == null) return null;
     const t = v.trim();
-    return t.length ? t : undefined;
+    return t.length ? t : null;
   }
 
   public static requiredTrim(v: string): string {
     return (v ?? '').trim();
   }
 
-  public static optNumber(v: number | null): number | undefined {
-    return v == null ? undefined : v;
+  public static optNumber(v: number | null): number | null {
+    return v == null ? null : v;
   }
 
   public static requiredNumber(v: number | null): number {

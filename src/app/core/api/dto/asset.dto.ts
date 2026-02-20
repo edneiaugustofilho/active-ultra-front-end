@@ -6,52 +6,52 @@ import {
   AssetVehicleType
 } from '../../../shared/all-types';
 
-export interface AssetUpsertRequest {
-  name: string;
-  acquisitionValue: number;
+export interface AssetDto {
+  id: string | null;
+  createdAt: string | null;
+  updatedAt: string | null;
 
-  code: string;
+  name: string;
+
   category: AssetCategory;
   status: AssetStatus;
-  serialNumber?: string;
-  location?: string;
+  serialNumber: string;
 
-  acquisitionDate?: string; // 'YYYY-MM-DD'
-  expectedLifetimeMonths?: number;
+  acquisitionValue: number | null;
 
-  brand?: string;
-  model?: string;
-  modelYear?: number;
-  manufactureYear?: number;
-  licensePlate?: string;
-  chassisNumber?: string;
-  renavam?: string;
-  fleetNumber?: string;
-  color?: string;
+  code: string | null;
+  location: string | null;
 
-  vehicleType?: AssetVehicleType;
-  fuelType?: AssetFuelType;
-  transmissionType?: AssetTransmissionType;
-  ownershipType?: AssetOwnershipType;
+  acquisitionDate: string | null; // 'YYYY-MM-DD'
+  expectedLifetimeMonths: number | null;
 
-  odometerKm?: number;
-  seatingCapacity?: number;
-  axleCount?: number;
-  maxLoadKg?: number;
-  engineDisplacementCc?: number;
-  tankCapacityLiters?: number;
+  brand: string | null;
+  model: string | null;
+  modelYear: number | null;
+  manufactureYear: number | null;
+  licensePlate: string | null;
+  chassisNumber: string | null;
+  renavam: string | null;
+  fleetNumber: string | null;
+  color: string | null;
 
-  insuranceCompany?: string;
-  insurancePolicyNumber?: string;
-  insuranceExpiryDate?: string;      // 'YYYY-MM-DD'
-  registrationExpiryDate?: string;   // 'YYYY-MM-DD'
-  currentDriver?: string;
-  gpsTrackerId?: string;
-  notes?: string;
-}
+  vehicleType: AssetVehicleType | null;
+  fuelType: AssetFuelType | null;
+  transmissionType: AssetTransmissionType | null;
+  ownershipType: AssetOwnershipType | null;
 
-export interface AssetResponse extends AssetUpsertRequest {
-  id: string;
-  createdAt: string;
-  updatedAt: string;
+  odometerKm: number | null;
+  seatingCapacity: number | null;
+  axleCount: number | null;
+  maxLoadKg: number | null;
+  engineDisplacementCc: number | null;
+  tankCapacityLiters: number | null;
+
+  insuranceCompany: string | null;
+  insurancePolicyNumber: string | null;
+  insuranceExpiryDate: string | null;      // 'YYYY-MM-DD'
+  registrationExpiryDate: string | null;   // 'YYYY-MM-DD'
+  currentDriver: string | null;
+  gpsTrackerId: string | null;
+  notes: string | null;
 }

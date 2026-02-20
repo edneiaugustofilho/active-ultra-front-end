@@ -2,7 +2,7 @@ import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {environment} from '../../../environments/environment';
-import {AssetResponse, AssetUpsertRequest} from './dto/asset.dto';
+import {AssetDto} from './dto/asset.dto';
 import {PageResponse} from './dto/page-response';
 
 @Injectable({providedIn: 'root'})
@@ -11,16 +11,16 @@ export class AssetApi {
 
   private readonly baseUrl = `${environment.apiBaseUrl}/assets`;
 
-  findById(id: string): Observable<AssetResponse> {
-    return this.http.get<AssetResponse>(`${this.baseUrl}?id=${id}`);
+  findById(id: string): Observable<AssetDto> {
+    return this.http.get<AssetDto>(`${this.baseUrl}?id=${id}`);
   }
 
-  create(request: AssetUpsertRequest): Observable<AssetResponse> {
-    return this.http.post<AssetResponse>(this.baseUrl, request);
+  create(request: AssetDto): Observable<AssetDto> {
+    return this.http.post<AssetDto>(this.baseUrl, request);
   }
 
-  update(id: string, request: AssetUpsertRequest): Observable<AssetResponse> {
-    return this.http.put<AssetResponse>(`${this.baseUrl}?id=${id}`, request);
+  update(id: string, request: AssetDto): Observable<AssetDto> {
+    return this.http.put<AssetDto>(`${this.baseUrl}?id=${id}`, request);
   }
 
   delete(id: string): Observable<void> {
@@ -37,7 +37,7 @@ export class AssetApi {
     pageSize?: number;
     sortBy?: string;
     direction?: 'ASC' | 'DESC';
-  }): Observable<PageResponse<AssetResponse>> {
-    return this.http.post<PageResponse<AssetResponse>>(`${this.baseUrl}/search`, options);
+  }): Observable<PageResponse<AssetDto>> {
+    return this.http.post<PageResponse<AssetDto>>(`${this.baseUrl}/search`, options);
   }
 }

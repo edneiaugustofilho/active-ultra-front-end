@@ -21,12 +21,12 @@ export const appRoutes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        loadComponent: () => import('./dashboard/dashboard').then(m => m.DashboardComponent),
+        loadComponent: () => import('./features/assets/pages/dashboard/dashboard').then(m => m.DashboardComponent),
       },
       {
         path: 'dashboard',
         pathMatch: 'full',
-        loadComponent: () => import('./dashboard/dashboard').then(m => m.DashboardComponent),
+        loadComponent: () => import('./features/assets/pages/dashboard/dashboard').then(m => m.DashboardComponent),
       },
       {
         path: 'assets',
@@ -36,7 +36,7 @@ export const appRoutes: Routes = [
             pathMatch: 'full',
             loadComponent: () =>
               import('./features/assets/pages/asset/asset-list/assets-list')
-                .then(m => m.AssetsComponent),
+                .then(m => m.AssetsListComponent),
           },
           {
             path: 'new',
