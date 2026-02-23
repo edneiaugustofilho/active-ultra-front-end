@@ -4,7 +4,7 @@ import {
   AssetOwnershipType, AssetStatus,
   AssetTransmissionType,
   AssetVehicleType
-} from '../../../shared/all-types';
+} from '../../all-types';
 
 export interface AssetDto {
   id: string | null;

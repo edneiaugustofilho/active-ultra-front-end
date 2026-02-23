@@ -1,7 +1,7 @@
 import {HttpInterceptorFn} from '@angular/common/http';
-import {environment} from '../../../environments/environment';
+import {environment} from '../../../../environments/environment';
 import {inject} from '@angular/core';
-import {TenantContextService} from '../../auth/tenant-context/tenant-context';
+import {TenantContextService} from '../../../auth/tenant-context/tenant-context';
 
 export const tenantInterceptor: HttpInterceptorFn = (req, next) => {
   const tenantContext = inject(TenantContextService);

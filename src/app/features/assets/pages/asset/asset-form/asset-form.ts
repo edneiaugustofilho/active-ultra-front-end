@@ -7,8 +7,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTabsModule} from '@angular/material/tabs';
 import {ActivatedRoute, Router, RouterLink} from '@angular/router';
-import {AssetApi} from '../../../../../core/api/asset-api';
-import {AssetDto} from '../../../../../core/api/dto/asset.dto';
+import {AssetApi} from '../../../../../shared/api/asset-api';
+import {AssetDto} from '../../../../../shared/api/dto/asset.dto';
 import {buildAssetForm} from './asset-form.factory';
 import {AssetMapper} from './asset.mapper';
 import {MatNativeDateModule, provideNativeDateAdapter} from '@angular/material/core';
@@ -23,6 +23,9 @@ import {
   ASSET_VEHICLE_TYPE_PT_BR
 } from '../../../../../shared/all-types';
 import {normalizeCurrency} from '../../../../../shared/normalizers.util';
+import {Observable} from 'rxjs';
+import {ApiError} from '../../../../../shared/http/api-error';
+import {applyApiErrors} from '../../../../../shared/forms/apply-api-errors';
 
 @Component({
   standalone: true,
@@ -83,13 +86,13 @@ export class AssetFormComponent implements OnInit {
 
     const request: AssetDto = AssetMapper.toDto(this.form.getRawValue());
 
-    const action$ = this.isEditMode
+    const action$: Observable<AssetDto> = this.isEditMode
       ? this.assetService.update(this.assetId!, request)
       : this.assetService.create(request);
 
     action$.subscribe({
       next: () => this.toastService.concludedWithSuccess(),
-      error: () => this.toastService.error('Erro inesperado')
+      error: (apiError: ApiError) => applyApiErrors(this.form, apiError, this.toastService)
     });
   }
 

@@ -1,4 +1,4 @@
-import {AssetCategory, AssetStatus} from '../../../shared/all-types';
+import {AssetCategory, AssetStatus} from '../../all-types';
 
 export interface DashboardDto {
   id: string | null;
