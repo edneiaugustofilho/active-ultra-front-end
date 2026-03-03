@@ -1,8 +1,8 @@
 import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {environment} from '../../../environments/environment.development';
 import {Observable} from 'rxjs';
 import {DashboardDto} from './dto/dashboard.dto';
+import {environment} from '../../../environments/environment';
 
 @Injectable({providedIn: 'root'})
 export class DashboardApi {
