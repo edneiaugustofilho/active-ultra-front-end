@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {AuthService} from '../../../../auth/auth';
 import {CustomNavigator} from '../../../../services/custom-navigator';
 import {DashboardApi} from '../../../../shared/api/dashboard.api';
-import {Observable} from 'rxjs';
+import {Observable, shareReplay} from 'rxjs';
 import {DashboardDto} from '../../../../shared/api/dto/dashboard.dto';
 import {BrlCurrencyPipe} from '../../../../shared/pipe/brl-currency.pipe';
 import {ASSET_CATEGORY_PT_BR, ASSET_STATUS_PT_BR} from '../../../../shared/all-types';
@@ -28,18 +28,10 @@ export class DashboardComponent implements OnInit {
               private customNavigator: CustomNavigator) {
   }
 
-  dashboard$: Observable<DashboardDto> = this.dashboardApi.get();
+  dashboard$: Observable<DashboardDto> = this.dashboardApi.get().pipe(shareReplay(1));
 
   ngOnInit(): void {
     this.message = 'loading...';
-
-    this.loadDashBoard();
-  }
-
-  loadDashBoard(): void {
-    this.dashboardApi.get().subscribe(response => {
-
-    });
   }
 
   isLoggedIn(): boolean {
