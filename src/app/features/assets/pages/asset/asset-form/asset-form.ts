@@ -25,7 +25,7 @@ import {
 import {normalizeCurrency} from '../../../../../shared/normalizers.util';
 import {Observable} from 'rxjs';
 import {ApiError} from '../../../../../shared/http/api-error';
-import {applyApiErrors} from '../../../../../shared/forms/apply-api-errors';
+import {applyApiErrors} from '../../../../../shared/http/apply-api-errors';
 
 @Component({
   standalone: true,
