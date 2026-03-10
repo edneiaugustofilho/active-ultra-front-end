@@ -4,17 +4,16 @@ import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 
-import {AssetApi} from '../../../../../shared/api/asset-api';
-import {PageResponse} from '../../../../../shared/api/dto/page-response';
-import {AssetSearchRequest} from '../../../../../shared/api/dto/asset-search-request';
+import {AssetApi} from '../../../shared/api/asset-api';
+import {PageResponse} from '../../../shared/api/dto/page-response';
+import {AssetSearchRequest} from '../../../shared/api/dto/asset-search-request';
 import {MatPaginatorModule, PageEvent} from '@angular/material/paginator';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {RouterLink} from '@angular/router';
-import {translateEnum} from '../../../../../shared/i18n/translate.util';
-import {ASSET_CATEGORY_PT_BR, ASSET_STATUS_PT_BR} from '../../../../../shared/all-types';
-import {AssetDto} from '../../../../../shared/api/dto/asset.dto';
-import {BrlCurrencyPipe} from '../../../../../shared/pipe/brl-currency.pipe';
+import {translateEnum} from '../../../shared/i18n/translate.util';
+import {ASSET_CATEGORY_PT_BR, ASSET_STATUS_PT_BR} from '../../../shared/all-types';
+import {AssetDto} from '../../../shared/api/dto/asset.dto';
 
 @Component({
   standalone: true,
@@ -28,12 +27,11 @@ import {BrlCurrencyPipe} from '../../../../../shared/pipe/brl-currency.pipe';
     MatPaginatorModule,
     MatFormFieldModule,
     MatInputModule,
-    BrlCurrencyPipe,
   ],
   templateUrl: './assets-list.html',
 })
-export class AssetsListComponent implements OnInit {
-  private readonly assetApi = inject(AssetApi);
+export class AssetsList implements OnInit {
+  private readonly assetApi: AssetApi = inject(AssetApi);
 
   loading = true;
   error?: string;

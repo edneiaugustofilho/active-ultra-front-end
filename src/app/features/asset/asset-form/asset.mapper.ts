@@ -1,5 +1,5 @@
-import {AssetDto} from '../../../../../shared/api/dto/asset.dto';
-import {MapperHelper} from '../../../../../shared/mapper.helper';
+import {AssetDto} from '../../../shared/api/dto/asset.dto';
+import {MapperHelper} from '../../../shared/mapper.helper';
 import {AssetFormModel} from "./asset-form.model";
 
 export class AssetMapper {

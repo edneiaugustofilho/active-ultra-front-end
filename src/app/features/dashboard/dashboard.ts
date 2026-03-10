@@ -1,13 +1,13 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {AuthService} from '../../../../auth/auth';
-import {CustomNavigator} from '../../../../services/custom-navigator';
-import {DashboardApi} from '../../../../shared/api/dashboard.api';
+import {AuthService} from '../../auth/auth';
+import {CustomNavigator} from '../../services/custom-navigator';
+import {DashboardApi} from '../../shared/api/dashboard.api';
 import {Observable, shareReplay} from 'rxjs';
-import {DashboardDto} from '../../../../shared/api/dto/dashboard.dto';
-import {BrlCurrencyPipe} from '../../../../shared/pipe/brl-currency.pipe';
-import {ASSET_CATEGORY_PT_BR, ASSET_STATUS_PT_BR} from '../../../../shared/all-types';
-import {translateEnum} from '../../../../shared/i18n/translate.util';
+import {DashboardDto} from '../../shared/api/dto/dashboard.dto';
+import {BrlCurrencyPipe} from '../../shared/pipe/brl-currency.pipe';
+import {ASSET_CATEGORY_PT_BR, ASSET_STATUS_PT_BR} from '../../shared/all-types';
+import {translateEnum} from '../../shared/i18n/translate.util';
 
 
 @Component({
@@ -18,7 +18,7 @@ import {translateEnum} from '../../../../shared/i18n/translate.util';
   styleUrls: ['./dashboard.css'],
   providers: [BrlCurrencyPipe]
 })
-export class DashboardComponent implements OnInit {
+export class Dashboard implements OnInit {
 
   private dashboardApi: DashboardApi = inject(DashboardApi);
 

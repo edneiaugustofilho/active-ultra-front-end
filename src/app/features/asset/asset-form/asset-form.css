@@ -15,11 +15,6 @@
   padding: 16px 16px 12px;
 }
 
-/* Constrain content width for readability */
-.content {
-  max-width: 1200px;
-  margin: 0 auto;
-}
 
 /* Tabs body spacing */
 .tab-body {

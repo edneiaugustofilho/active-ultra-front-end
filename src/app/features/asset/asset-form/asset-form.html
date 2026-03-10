@@ -2,14 +2,14 @@
 
 <form [formGroup]="form" (ngSubmit)="save()">
 
-  <div class="surface-card content">
+  <div class="surface-card">
 
     <!-- Header -->
     <div class="header">
       <div class="row-between">
         <div>
           <h2 class="page-title font-semibold m-0">
-            {{ isEditMode ? 'Detalhes do Ativo' : 'Novo Ativo' }}
+            {{ isEditMode ? 'Ativo' : 'Novo Ativo' }}
           </h2>
 
           @if (isEditMode) {
@@ -20,7 +20,7 @@
           }
         </div>
 
-        <div class="header-actions">
+        <div class="actions">
           <button mat-button type="button" routerLink="/assets">Voltar</button>
           <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
             Salvar

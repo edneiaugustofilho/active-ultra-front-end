@@ -7,13 +7,13 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTabsModule} from '@angular/material/tabs';
 import {ActivatedRoute, Router, RouterLink} from '@angular/router';
-import {AssetApi} from '../../../../../shared/api/asset-api';
-import {AssetDto} from '../../../../../shared/api/dto/asset.dto';
+import {AssetApi} from '../../../shared/api/asset-api';
+import {AssetDto} from '../../../shared/api/dto/asset.dto';
 import {buildAssetForm} from './asset-form.factory';
 import {AssetMapper} from './asset.mapper';
 import {MatNativeDateModule, provideNativeDateAdapter} from '@angular/material/core';
 import {NgxMaskDirective} from 'ngx-mask';
-import {ToastService} from '../../../../../shared/toast/toast';
+import {ToastService} from '../../../shared/toast/toast';
 import {
   ASSET_CATEGORY_PT_BR,
   ASSET_FUEL_TYPE_PT_BR,
@@ -21,11 +21,11 @@ import {
   ASSET_STATUS_PT_BR,
   ASSET_TRANSMISSION_TYPE_PT_BR,
   ASSET_VEHICLE_TYPE_PT_BR
-} from '../../../../../shared/all-types';
-import {normalizeCurrency} from '../../../../../shared/normalizers.util';
+} from '../../../shared/all-types';
+import {normalizeCurrency} from '../../../shared/normalizers.util';
 import {Observable} from 'rxjs';
-import {ApiError} from '../../../../../shared/http/api-error';
-import {applyApiErrors} from '../../../../../shared/http/apply-api-errors';
+import {ApiError} from '../../../shared/http/api-error';
+import {applyApiErrors} from '../../../shared/http/apply-api-errors';
 
 @Component({
   standalone: true,
@@ -45,7 +45,7 @@ import {applyApiErrors} from '../../../../../shared/http/apply-api-errors';
   templateUrl: './asset-form.html',
   styleUrls: ['./asset-form.css']
 })
-export class AssetFormComponent implements OnInit {
+export class AssetForm implements OnInit {
 
   protected readonly ASSET_CATEGORY_PT_BR = ASSET_CATEGORY_PT_BR;
 

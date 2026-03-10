@@ -1,4 +1,4 @@
-import {AssetDto} from '../../../../../shared/api/dto/asset.dto';
+import {AssetDto} from '../../../shared/api/dto/asset.dto';
 
 export type AssetFormModel =
   Omit<AssetDto, 'category' | 'status'> & {

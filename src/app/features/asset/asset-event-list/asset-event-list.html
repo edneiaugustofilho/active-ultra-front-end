@@ -1,0 +1,67 @@
+<div class="row-between">
+  <h1 class="page-title font-semibold">Eventos dos Ativos</h1>
+
+  <button mat-raised-button routerLink="/asset-events/new">
+    <mat-icon class="mr-1">add</mat-icon>
+    Novo Evento
+  </button>
+</div>
+
+<mat-form-field class="search-field">
+  <mat-label>Pesquisa</mat-label>
+  <input matInput
+         placeholder="pesquisa ..."
+         [value]="searchRequest.query"
+         (input)="onQueryChange($any($event.target).value)"/>
+  <mat-icon matPrefix>search</mat-icon>
+
+  @if (searchRequest &&
+  searchRequest.query &&
+  searchRequest.query!.length > 0) {
+    <button
+      mat-icon-button
+      matSuffix
+      type="button"
+      aria-label="Limpar pesquisa"
+      (click)="onQueryChange('')">
+      <mat-icon>close</mat-icon>
+    </button>
+  }
+</mat-form-field>
+
+@if (loading) {
+  <div>Carregando...</div>
+} @else if (error) {
+  <div class="error-text">{{ error }}</div>
+} @else if (!page || (page.content?.length ?? 0) === 0) {
+  <div>Nenhum ativo encontrado.</div>
+} @else {
+  <div class="card-grid">
+    @for (a of page.content; track a.id) {
+      <mat-card
+        class="cursor-pointer hover:shadow-md transition"
+        [routerLink]="['/asset-events', a.id]">
+        <div class="card-row">
+          <div>
+            <div class="font-semibold">{{ a.assetDescription }}</div>
+            <div class="meta-text">
+              {{ translateEnum(ASSET_EVENT_TYPE_PT_BR, a.eventType) }}
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    }
+  </div>
+
+  <div class="section-spacing">
+    @if (page) {
+      <mat-paginator
+        [length]="page.totalElements ?? 0"
+        [pageIndex]="page.number ?? 0"
+        [pageSize]="page.size ?? 0"
+        [pageSizeOptions]="[5, 10, 20, 50]"
+        (page)="onPageChange($event)">
+      </mat-paginator>
+    }
+  </div>
+}

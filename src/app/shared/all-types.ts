@@ -4,6 +4,7 @@ export type AssetVehicleType = 'CAR' | 'PICKUP' | 'TRUCK' | 'VAN' | 'BUS' | 'MOT
 export type AssetFuelType = 'GASOLINE' | 'ETHANOL' | 'FLEX' | 'DIESEL' | 'CNG' | 'ELECTRIC' | 'HYBRID' | 'OTHER';
 export type AssetTransmissionType = 'MANUAL' | 'AUTOMATIC' | 'CVT' | 'AUTOMATED';
 export type AssetOwnershipType = 'OWNED' | 'LEASED' | 'RENTED' | 'THIRD_PARTY';
+export type AssetEventType = 'CREATED' | 'EXCLUDED' | 'RESPONSIBLE_CHANGED' | 'STATUS_CHANGED' | 'CATEGORY_CHANGED' | 'LOCATION_CHANGED' | 'COMMENT_ADDED' | 'ATTACHMENT_ADDED';
 
 
 export const ASSET_CATEGORY_PT_BR: Record<string, string> = {
@@ -95,3 +96,14 @@ export const ASSET_OWNERSHIP_TYPE_PT_BR: Record<string, string> = {
   RENTED: 'Alugado',
   THIRD_PARTY: 'Terceiros',
 };
+
+export const ASSET_EVENT_TYPE_PT_BR: Record<string, string> = {
+  CREATED: 'Criado',
+  EXCLUDED: 'Excluído',
+  RESPONSIBLE_CHANGED: 'Responsável alterado',
+  STATUS_CHANGED: 'Status alterado',
+  CATEGORY_CHANGED: 'Categoria alterada',
+  LOCATION_CHANGED: 'Localização alterada',
+  COMMENT_ADDED: 'Comentário adicionado',
+  ATTACHMENT_ADDED: 'Anexo adicionado'
+}

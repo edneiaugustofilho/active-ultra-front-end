@@ -13,7 +13,7 @@
       </button>
     </div>
 
-    <mat-nav-list>
+    <mat-nav-list (click)="toggleSidenavMobile()">
       <a mat-list-item [routerLink]="['/dashboard']">
         <mat-icon matListItemIcon>dashboard</mat-icon>
         <span matListItemTitle>Painel</span>
@@ -21,6 +21,10 @@
       <a mat-list-item [routerLink]="['/assets']">
         <mat-icon matListItemIcon>inventory_2</mat-icon>
         <span matListItemTitle>Ativos</span>
+      </a>
+      <a mat-list-item [routerLink]="['/asset-events']">
+        <mat-icon matListItemIcon>history</mat-icon>
+        <span matListItemTitle>Eventos</span>
       </a>
       <a mat-list-item (click)="logout()">
         <mat-icon matListItemIcon>logout</mat-icon>
